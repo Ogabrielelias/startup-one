@@ -42,7 +42,7 @@ public class UserController {
     
     @PutMapping("{id}") 
     public User update(@RequestBody User user, @PathVariable int id) { 
-    	user.setId(id);; 
+    	user.setId(id);
         return userRepository.save(user); 
     } 
 

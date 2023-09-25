@@ -9,6 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -46,6 +49,10 @@ public class Sleep {
 	@Column(name = "sleep_quality", nullable = false)
 	private double sleepQuality;
 
+	@ManyToOne(optional=false) 
+    @JoinColumn(name="user_id", nullable=false, updatable=false)
+    private User user;
+    
     @Temporal(TemporalType.DATE)
     @Column(name = "dt_last_update")
     private Calendar dtLastUpdate;
@@ -68,6 +75,15 @@ public class Sleep {
 		this.circadianRhythm = circadianRhythm;
 		this.sleepQuality = sleepQuality;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
 	public Calendar getStartTime() {
 		return startTime;
